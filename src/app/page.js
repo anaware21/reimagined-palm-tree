@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
     useEffect(() => {
+        window.scrollTo(0, 0); // Forces scroll to top on refresh
         gsap.utils.toArray(".fade-in").forEach((element) => {
           gsap.fromTo(
             element,
@@ -32,37 +33,43 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full p-4 flex justify-between items-center backdrop-blur-lg bg-opacity-20 bg-gray-900 z-50">
-        <h1 className="text-2xl font-bold">Adwait Naware</h1>
+      <nav className="fixed top-0 left-0 w-full p-4 bg-black text-white shadow-md flex justify-between items-center z-50">
+        {/* Left-Aligned Logo */}
+        <h1 className="text-xl sm:text-2xl font-bold">MyPortfolio</h1>
 
-        {/* Scroll Links */}
-        <ul className="flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-          <li>
-            <a href="#home" className="hover:text-gray-400 cursor-pointer">Home</a>
-          </li>
-          <li>
-            <a href="#projects" className="hover:text-gray-400 cursor-pointer">Projects</a>
-          </li>
-          <li>
-            <a href="#contact" className="hover:text-gray-400 cursor-pointer">Contact</a>
-          </li>
+        {/* Centered Navigation Links */}
+        <ul className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6">
+            <li><a href="#home" className="hover:text-gray-400">Home</a></li>
+            <li><a href="#projects" className="hover:text-gray-400">Projects</a></li>
+            <li><a href="#contact" className="hover:text-gray-400">Contact</a></li>
         </ul>
-      </nav>
+
+        {/* Mobile Menu Button (Hidden on Desktop) */}
+        <button className="md:hidden">☰</button>
+        </nav>
+
 
       {/* Home Section */}
-      <section id="home" className="h-screen flex flex-col justify-center items-center text-center px-6">
-        <motion.h1
-          className="text-6xl font-extrabold fade-in"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+      <section
+        id="home"
+        className="h-screen flex flex-col justify-center items-center text-center px-6 
+                    bg-[url('/images/home-bg.jpg')] bg-cover bg-bottom bg-no-repeat"
         >
-          Adwait Naware
-        </motion.h1>
-        <p className="text-xl text-gray-400 mt-4 fade-in">
-        Welcome to My Portfolio
-        </p>
-      </section>
+        {/* Translucent Box */}
+        <div className="fade-box bg-transparent bg-opacity-10 rounded-2xl p-8 backdrop-blur-3xl border border-white border-opacity-1 shadow-lg">
+            <motion.h1
+            className="text-6xl font-extrabold fade-in"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            >
+            Welcome to My Portfolio
+            </motion.h1>
+            <p className="text-xl text-gray-200 mt-4 fade-in">
+            Sleek. Minimal. Inspired by Apple.
+            </p>
+        </div>
+        </section>
 
       {/* Projects Section */}
       <section id="projects" className="h-screen flex flex-col justify-center items-center text-center px-6 bg-gray-900">
